@@ -1,19 +1,652 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayasan Pendidikan dan Sosial Paku Mas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(183, 228, 199, 0.8) 0%, rgba(162, 210, 255, 0.8) 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .timeline-item:not(:last-child):after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -20px;
+            width: 2px;
+            height: 20px;
+            background-color: #a3e635;
+            transform: translateX(-50%);
+        }
+        .gallery-item {
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                    <i class="fas fa-seedling text-green-500 text-xl"></i>
+                </div>
+                <span class="text-xl font-semibold text-green-600">Paku Mas</span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-600 hover:text-green-500 transition">Tentang Kami</a>
+                <a href="#programs" class="text-gray-600 hover:text-green-500 transition">Program</a>
+                <a href="#donation" class="text-gray-600 hover:text-green-500 transition">Donasi</a>
+                <a href="#gallery" class="text-gray-600 hover:text-green-500 transition">Kegiatan</a>
+                <a href="#contact" class="text-gray-600 hover:text-green-500 transition">Kontak</a>
+            </nav>
+            
+            <a href="#donation" class="hidden md:block bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition shadow-md">
+                Donasi Sekarang
+            </a>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gray-600">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#about" class="text-gray-600 hover:text-green-500 py-2 transition">Tentang Kami</a>
+                <a href="#programs" class="text-gray-600 hover:text-green-500 py-2 transition">Program</a>
+                <a href="#donation" class="text-gray-600 hover:text-green-500 py-2 transition">Donasi</a>
+                <a href="#gallery" class="text-gray-600 hover:text-green-500 py-2 transition">Kegiatan</a>
+                <a href="#contact" class="text-gray-600 hover:text-green-500 py-2 transition">Kontak</a>
+                <a href="#donation" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition text-center">
+                    Donasi Sekarang
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">
+                    Bersama Membangun Masa Depan Anak-Anak Indonesia
+                </h1>
+                <p class="text-lg text-gray-600 mb-8">
+                    Yayasan Pendidikan dan Sosial Paku Mas menyediakan layanan PAUD, KB, dan TK untuk anak-anak dari berbagai latar belakang.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                    <a href="#about" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-medium transition shadow-md text-center">
+                        Kenali Yayasan Kami
+                    </a>
+                    <a href="#donation" class="bg-white hover:bg-gray-100 text-green-500 border border-green-500 px-6 py-3 rounded-full font-medium transition shadow-md text-center">
+                        Program Donasi
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-blue-100 rounded-full opacity-70"></div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-green-100 rounded-full opacity-70"></div>
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" 
+                         alt="Anak-anak belajar" 
+                         class="relative rounded-2xl shadow-xl w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Tentang Kami</h2>
+                <div class="w-20 h-1 bg-green-500 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center mb-16">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Yayasan Pendidikan dan Sosial Paku Mas</h3>
+                    <p class="text-gray-600 mb-4">
+                        Kami adalah lembaga nirlaba yang mengelola Pendidikan Anak Usia Dini (PAUD), Kelompok Bermain (KB), dan Taman Kanak-kanak (TK) dengan visi memberikan pendidikan berkualitas untuk semua anak.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        Berdiri atas dasar kepedulian terhadap akses pendidikan usia dini yang merata, kami fokus membantu anak-anak dari keluarga kurang mampu untuk mendapatkan pendidikan dasar yang layak.
+                    </p>
+                    <p class="text-gray-600">
+                        Dengan pendekatan belajar sambil bermain, kami berkomitmen menciptakan lingkungan yang menyenangkan dan mendukung perkembangan holistik setiap anak.
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-blue-50 p-6 rounded-2xl">
+                        <div class="relative">
+                            <!-- Timeline -->
+                            <div class="space-y-10">
+                                <div class="timeline-item relative text-center">
+                                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-lightbulb text-green-500 text-2xl"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-800">2015</h4>
+                                    <p class="text-gray-600">Ide pendirian yayasan muncul</p>
+                                </div>
+                                
+                                <div class="timeline-item relative text-center">
+                                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-hand-holding-heart text-blue-500 text-2xl"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-800">2017</h4>
+                                    <p class="text-gray-600">Pendirian resmi Yayasan Paku Mas</p>
+                                </div>
+                                
+                                <div class="timeline-item relative text-center">
+                                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-school text-yellow-500 text-2xl"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-800">2018</h4>
+                                    <p class="text-gray-600">Pembukaan PAUD pertama</p>
+                                </div>
+                                
+                                <div class="timeline-item relative text-center">
+                                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-child text-purple-500 text-2xl"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-800">2023</h4>
+                                    <p class="text-gray-600">Melayani 150+ anak setiap tahun</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-green-50 rounded-2xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Visi & Misi Kami</h3>
+                        <p class="text-gray-600 mb-4">
+                            <span class="font-semibold text-green-600">Visi:</span> Menjadi lembaga pendidikan usia dini yang inklusif dan berkualitas, membentuk generasi penerus yang berkarakter dan berkompeten.
+                        </p>
+                        <p class="text-gray-600">
+                            <span class="font-semibold text-green-600">Misi:</span> 
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2 mt-2">
+                            <li>Menyediakan pendidikan usia dini yang terjangkau</li>
+                            <li>Mengembangkan potensi anak secara holistik</li>
+                            <li>Membangun karakter positif sejak dini</li>
+                            <li>Melibatkan masyarakat dalam pendidikan anak</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Anak-anak bermain" 
+                             class="rounded-xl shadow-md w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Kami -->
+    <section id="programs" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Program Kami</h2>
+                <div class="w-20 h-1 bg-green-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition card-hover">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-graduation-cap text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Beasiswa Anak Kurang Mampu</h3>
+                    <p class="text-gray-600 text-center">
+                        Memberikan bantuan biaya pendidikan bagi anak-anak dari keluarga prasejahtera untuk mengikuti program PAUD, KB, dan TK secara gratis.
+                    </p>
+                </div>
+                
+                <!-- Program 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition card-hover">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-book-open text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Fasilitas & Alat Edukatif</h3>
+                    <p class="text-gray-600 text-center">
+                        Menyediakan sarana belajar yang memadai dan alat peraga edukatif untuk mendukung proses pembelajaran yang menyenangkan.
+                    </p>
+                </div>
+                
+                <!-- Program 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition card-hover">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-hands-helping text-yellow-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Kegiatan Harian & Sosial</h3>
+                    <p class="text-gray-600 text-center">
+                        Mengadakan berbagai kegiatan harian yang mendidik serta program sosial untuk membangun karakter dan kepedulian sosial anak.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Donasi -->
+    <section id="donation" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Dukung Langkah Kecil Mereka</h2>
+                <div class="w-20 h-1 bg-green-500 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Program Donasi</h3>
+                    <p class="text-gray-600 mb-4">
+                        Kami membuka donasi untuk umum yang akan digunakan untuk berbagai kebutuhan yayasan, termasuk:
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-600 space-y-2 mb-6">
+                        <li>Beasiswa pendidikan untuk anak kurang mampu</li>
+                        <li>Pembelian alat belajar dan peraga edukatif</li>
+                        <li>Perbaikan dan pengembangan fasilitas belajar</li>
+                        <li>Biaya operasional dan gaji guru</li>
+                    </ul>
+                    
+                    <div class="bg-green-50 p-6 rounded-xl mb-6">
+                        <div class="flex items-start">
+                            <div class="mr-4 mt-1">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Transparansi Penuh</h4>
+                                <p class="text-gray-600">
+                                    Laporan penggunaan donasi tersedia secara berkala dan dapat diakses oleh semua donatur. Kami berkomitmen untuk akuntabilitas penuh dalam setiap penggunaan dana.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full font-medium transition shadow-md inline-block text-center">
+                        Donasi Sekarang
+                    </a>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-blue-50 p-8 rounded-2xl">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6 text-center">Cara Berdonasi</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4 shadow">
+                                    <i class="fas fa-money-bill-wave text-green-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Transfer Bank</h4>
+                                    <p class="text-gray-600">
+                                        Rekening BCA: 123 456 7890<br>
+                                        a.n Yayasan Pendidikan Paku Mas
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4 shadow">
+                                    <i class="fas fa-qrcode text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">QRIS</h4>
+                                    <p class="text-gray-600">
+                                        Scan kode QRIS kami untuk donasi cepat dan mudah melalui berbagai aplikasi e-wallet.
+                                    </p>
+                                    <div class="bg-white p-3 rounded-lg inline-block mt-2">
+                                        <div class="w-24 h-24 bg-gray-200 flex items-center justify-center">
+                                            <span class="text-xs text-gray-500">QR Code Placeholder</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4 shadow">
+                                    <i class="fas fa-hand-holding-usd text-yellow-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Donasi Langsung</h4>
+                                    <p class="text-gray-600">
+                                        Anda dapat mengunjungi kantor kami untuk berdonasi langsung dan melihat kegiatan yayasan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Kegiatan -->
+    <section id="gallery" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Galeri Kegiatan</h2>
+                <div class="w-20 h-1 bg-green-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1609010583256-5e9efd5af816?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Anak-anak belajar" 
+                         class="w-full h-64 object-cover">
+                    <div class="bg-white p-4">
+                        <h3 class="font-medium text-gray-800">Belajar Sambil Bermain</h3>
+                        <p class="text-sm text-gray-600">Kegiatan harian di PAUD Paku Mas</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Kegiatan outdoor" 
+                         class="w-full h-64 object-cover">
+                    <div class="bg-white p-4">
+                        <h3 class="font-medium text-gray-800">Kegiatan Outdoor</h3>
+                        <p class="text-sm text-gray-600">Belajar mengenal alam sekitar</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600880292203-75757162e22e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Kegiatan seni" 
+                         class="w-full h-64 object-cover">
+                    <div class="bg-white p-4">
+                        <h3 class="font-medium text-gray-800">Kegiatan Seni</h3>
+                        <p class="text-sm text-gray-600">Mengembangkan kreativitas anak</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" 
+                         alt="Kegiatan kelompok" 
+                         class="w-full h-64 object-cover">
+                    <div class="bg-white p-4">
+                        <h3 class="font-medium text-gray-800">Kerja Kelompok</h3>
+                        <p class="text-sm text-gray-600">Melatih kerja sama sejak dini</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1541692641319-981f557b1eae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Perayaan hari besar" 
+                         class="w-full h-64 object-cover">
+                    <div class="bg-white p-4">
+                        <h3 class="font-medium text-gray-800">Perayaan Hari Besar</h3>
+                        <p class="text-sm text-gray-600">Memperingati hari kemerdekaan</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Kegiatan sosial" 
+                         class="w-full h-64 object-cover">
+                    <div class="bg-white p-4">
+                        <h3 class="font-medium text-gray-800">Kegiatan Sosial</h3>
+                        <p class="text-sm text-gray-600">Berbagi dengan sesama</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full font-medium transition shadow-md">
+                    Lihat Lebih Banyak Foto
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Apa Kata Mereka?</h2>
+                <div class="w-20 h-1 bg-green-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-green-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Bu Siti</h4>
+                            <p class="text-sm text-gray-500">Orang Tua Murid</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Anak saya sangat senang belajar di PAUD Paku Mas. Gurunya sabar dan metode belajarnya menyenangkan. Sekarang anak saya lebih percaya diri dan mandiri."
+                    </p>
+                    <div class="flex mt-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-user-tie text-blue-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Pak Budi</h4>
+                            <p class="text-sm text-gray-500">Donatur</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Saya sangat menghargai transparansi yayasan dalam penggunaan dana donasi. Laporan yang rutin diberikan membuat saya yakin donasi tepat sasaran."
+                    </p>
+                    <div class="flex mt-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-user-graduate text-purple-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Bu Rina</h4>
+                            <p class="text-sm text-gray-500">Guru</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Bekerja di Paku Mas memberikan kepuasan tersendiri. Melihat perkembangan anak-anak dari hari ke hari adalah hadiah terbaik bagi seorang pendidik."
+                    </p>
+                    <div class="flex mt-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak & Media Sosial -->
+    <section id="contact" class="py-16 md:py-24 bg-green-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+                <div class="w-20 h-1 bg-green-500 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Informasi Kontak</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4 shadow">
+                                <i class="fas fa-map-marker-alt text-green-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Alamat</h4>
+                                <p class="text-gray-600">
+                                    Jl. Pendidikan No. 123<br>
+                                    Kelurahan Cerdas, Kecamatan Maju<br>
+                                    Kota Masa Depan, 12345
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4 shadow">
+                                <i class="fas fa-phone-alt text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Telepon/WhatsApp</h4>
+                                <p class="text-gray-600">
+                                    +62 812 3456 7890<br>
+                                    (Buka Senin-Jumat, 08.00-16.00 WIB)
+                                </p>
+                                <a href="https://wa.me/6281234567890" class="inline-block bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium mt-2 transition">
+                                    <i class="fab fa-whatsapp mr-1"></i> Hubungi via WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4 shadow">
+                                <i class="fas fa-envelope text-red-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Email</h4>
+                                <p class="text-gray-600">
+                                    info@paku-mas.org<br>
+                                    donasi@paku-mas.org
+                                </p>
+                                <a href="mailto:info@paku-mas.org" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium mt-2 transition">
+                                    <i class="fas fa-paper-plane mr-1"></i> Kirim Email
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-6">Media Sosial</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow hover:bg-blue-100 transition">
+                            <i class="fab fa-facebook-f text-blue-600"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow hover:bg-pink-100 transition">
+                            <i class="fab fa-instagram text-pink-600"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow hover:bg-blue-100 transition">
+                            <i class="fab fa-twitter text-blue-400"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow hover:bg-red-100 transition">
+                            <i class="fab fa-youtube text-red-600"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white p-6 rounded-2xl shadow-md">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Lokasi Kami</h3>
+                        
+                        <!-- Google Maps Embed -->
+                        <div class="aspect-w-16 aspect-h-9 mb-6">
+                            <div class="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+                                <span class="text-gray-500">Peta Google Maps Lokasi Yayasan</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Jam Operasional</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex justify-between border-b pb-2">
+                                <span>Senin - Jumat</span>
+                                <span>08.00 - 16.00 WIB</span>
+                            </li>
+                            <li class="flex justify-between border-b pb-2">
+                                <span>Sabtu</span>
+                                <span>08.00 - 12.00 WIB</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Minggu & Hari Libur</span>
+                                <span>Tutup</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-seedling text-green-500"></i>
+                        </div>
+                        <span class="text-lg font-semibold">Yayasan Paku Mas</span>
+                    </div>
+                    <p class="text-gray-300 max-w-xs">
+                        Membangun masa depan anak Indonesia melalui pendidikan usia dini yang berkualitas dan inklusif.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Tautan Cepat</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#about" class="text-gray-300 hover:text-white transition">Tentang Kami</a></li>
+                            <li><a href="#programs" class="text-gray-300 hover:text-white transition">Program</a></li>
+                            <li><a href="#donation" class="text-gray-300 hover:text-white transition">Donasi</a></li>
+                            <li><a href="#gallery" class="text-gray-300 hover:text-white transition">Galeri</a></li>
+                            <li><a href="#contact" class="text-gray-300 hover:text-white transition">Kontak</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Program</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">PAUD</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">Kelompok Bermain</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">TK</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">Beasiswa</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">Kegiatan Sosial</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">Syarat & Ketentuan</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">Kebijakan Privasi</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">L
 </html>
