@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Form Donasi – Yayasan Paku Mas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-green-50 min-h-screen flex flex-col items-center p-6">
+    <!-- Tombol Back -->
+    <div class="w-full max-w-2xl sm:max-w-xl mb-4">
+      <a
+        id="backButton"
+        href="index.html"
+        class="inline-flex items-center text-gray-600 hover:text-green-500 transition text-sm sm:text-base"
+      >
+        <i class="fas fa-arrow-left mr-2"></i>
+        Kembali ke Beranda
+      </a>
+    </div>
+
+    <!-- Card Form -->
+    <div
+      class="w-full max-w-2xl sm:max-w-xl bg-white rounded-2xl shadow-xl p-4 sm:p-8"
+    >
+      <h1
+        id="formTitle"
+        class="text-xl sm:text-2xl font-semibold text-gray-800"
+      >
+        Form Donasi
+      </h1>
+      <p id="formInstruction" class="text-gray-600 mt-2 mb-4 sm:mb-6">
+        Isi data di bawah untuk melanjutkan donasi kamu.
+      </p>
+
+      <!-- FORM -->
+      <form id="donasiForm" class="space-y-4 sm:space-y-6" novalidate>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div>
+            <label for="nama" class="block text-sm font-medium text-gray-700">
+              Nama <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="nama"
+              name="nama"
+              type="text"
+              required
+              placeholder="Misal: Budi Santoso"
+              class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-green-400 focus:ring-2 focus:ring-green-300 p-2 sm:p-3 text-sm sm:text-base"
+            />
+            <p id="namaError" class="hidden text-red-500 text-xs mt-1"></p>
+          </div>
+
+          <div>
+            <label
+              for="nomorHP"
+              class="block text-sm font-medium text-gray-700"
+            >
+              Nomor HP <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="nomorHP"
+              name="nomorHP"
+              type="tel"
+              required
+              pattern="^0[0-9]{9,12}$"
+              placeholder="Misal: 081234567890"
+              class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-green-400 focus:ring-2 focus:ring-green-300 p-2 sm:p-3 text-sm sm:text-base"
+            />
+            <p id="nomorHPError" class="hidden text-red-500 text-xs mt-1"></p>
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700"
+              >Email</label
+            >
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Misal: budi@gmail.com"
+              class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-green-400 focus:ring-2 focus:ring-green-300 p-2 sm:p-3 text-sm sm:text-base"
+            />
+            <p id="emailError" class="hidden text-red-500 text-xs mt-1"></p>
+          </div>
+
+          <div>
+            <label
+              for="jumlahDonasi"
+              class="block text-sm font-medium text-gray-700"
+            >
+              Jumlah Donasi (Rp) <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="jumlahDonasi"
+              name="jumlahDonasi"
+              type="text"
+              required
+              placeholder="Misal: 500.000"
+              class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-green-400 focus:ring-2 focus:ring-green-300 p-2 sm:p-3 text-sm sm:text-base"
+            />
+            <p
+              id="jumlahDonasiError"
+              class="hidden text-red-500 text-xs mt-1"
+            ></p>
+          </div>
+        </div>
+
+        <!-- Tipe Donasi -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Tipe Donasi <span class="text-red-500">*</span>
+          </label>
+          <div class="flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <label class="flex items-center gap-2 text-gray-700">
+              <input
+                type="radio"
+                name="tipeDonasi"
+                value="Tetap"
+                class="text-green-500 focus:ring-green-400"
+              />
+              Tetap
+            </label>
+            <label class="flex items-center gap-2 text-gray-700">
+              <input
+                type="radio"
+                name="tipeDonasi"
+                value="Tidak Tetap"
+                checked
+                class="text-green-500 focus:ring-green-400"
+              />
+              Tidak Tetap
+            </label>
+          </div>
+        </div>
+
+        <!-- Jangka Waktu -->
+        <div id="jangkaWaktuWrapper" class="hidden">
+          <label
+            for="jangkaWaktu"
+            class="block text-sm font-medium text-gray-700"
+          >
+            Jangka Waktu <span class="text-red-500">*</span>
+          </label>
+          <select
+            id="jangkaWaktu"
+            name="jangkaWaktu"
+            class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-green-400 focus:ring-2 focus:ring-green-300 p-2 sm:p-3 text-sm sm:text-base bg-white"
+          >
+            <option value="" disabled selected>Pilih jangka waktu</option>
+            <option value="Bulanan">Bulanan</option>
+            <option value="Per 3 Bulan">Per 3 Bulan</option>
+            <option value="Per 6 Bulan">Per 6 Bulan</option>
+            <option value="Tahunan">Tahunan</option>
+          </select>
+        </div>
+
+        <!-- Metode Donasi -->
+        <div>
+          <label
+            for="metodeDonasi"
+            class="block text-sm font-medium text-gray-700"
+          >
+            Metode Donasi <span class="text-red-500">*</span>
+          </label>
+          <select
+            id="metodeDonasi"
+            name="metodeDonasi"
+            required
+            class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-green-400 focus:ring-2 focus:ring-green-300 p-2 sm:p-3 text-sm sm:text-base bg-white"
+          >
+            <option value="" disabled selected>Pilih Metode</option>
+            <option value="Tunai">Tunai</option>
+            <option value="Transfer">Transfer Rekening Yayasan</option>
+            <option value="QRIS">QR Code</option>
+          </select>
+
+          <div
+            id="rekeningBox"
+            class="hidden mt-4 p-3 sm:p-4 rounded-xl bg-green-50 border border-green-200 text-center text-gray-700 text-sm sm:text-base"
+          >
+            Transfer ke Rekening <br />
+            <strong class="block text-green-600 text-base sm:text-lg mt-1">
+              7307 2313 73 (BSI)
+            </strong>
+            a.n Yayasan Paku Mas
+          </div>
+
+          <div
+            id="qrisBox"
+            class="hidden mt-4 p-3 sm:p-4 rounded-xl bg-blue-50 border border-blue-200 text-center text-gray-700 text-sm sm:text-base"
+          >
+            Scan QRIS di bawah:<br />
+            <img
+              src="https://dummyimage.com/200x200/41c9b4/fff.png&text=QRIS"
+              alt="QRIS Dummy"
+              class="mx-auto mt-3 rounded-lg max-w-[150px] sm:max-w-[200px]"
+            />
+          </div>
+
+          <!-- Upload Bukti -->
+          <div id="uploadWrapper" class="hidden mt-4">
+            <label class="block text-sm font-medium text-gray-700">
+              Upload Bukti Transfer <span class="text-red-500">*</span>
+            </label>
+
+            <div
+              id="dropZone"
+              class="mt-2 flex flex-col items-center justify-center p-6 border-2 border-dashed border-green-300 rounded-xl bg-green-50 text-gray-600 hover:border-green-400 transition cursor-pointer"
+            >
+              <p class="text-sm text-center">
+                Tarik & letakkan gambar di sini, atau klik untuk memilih file
+              </p>
+              <input
+                id="buktiTransfer"
+                type="file"
+                accept="image/*"
+                class="hidden"
+              />
+            </div>
+
+            <div
+              class="mt-3 flex flex-col sm:flex-row items-center gap-2 sm:gap-3"
+            >
+              <button
+                id="rechooseFileBtn"
+                type="button"
+                class="hidden px-3 py-2 bg-yellow-100 text-yellow-700 rounded-lg text-sm font-semibold hover:bg-yellow-200 w-full sm:w-auto"
+              >
+                Pilih Ulang
+              </button>
+              <span
+                id="file-name"
+                class="text-sm text-gray-600 break-words w-full sm:w-auto"
+              >
+                Belum ada file dipilih
+              </span>
+            </div>
+
+            <div id="previewWrapper" class="mt-3 hidden">
+              <p class="text-xs text-gray-500 mb-1">Preview:</p>
+              <img
+                id="previewImage"
+                src=""
+                alt="Preview Bukti Transfer"
+                class="max-h-40 sm:max-h-48 rounded-lg shadow w-full sm:w-auto"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Submit -->
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-end pt-4">
+          <button
+            id="submitBtn"
+            type="submit"
+            class="w-full sm:w-auto px-4 py-2 rounded-xl bg-green-500 text-white font-semibold shadow hover:bg-green-600 transition flex items-center justify-center gap-2"
+          ></button>
+        </div>
+      </form>
+
+      <!-- Section Sukses -->
+      <div
+        id="successSection"
+        class="hidden text-center p-4 sm:p-6 bg-green-100 rounded-xl mt-4 sm:mt-6"
+      >
+        <h2 class="text-lg sm:text-xl font-semibold text-green-800">
+          Donasi Berhasil!
+        </h2>
+        <p class="text-green-700 mt-2 text-sm sm:text-base">
+          Terima kasih atas donasi Anda.
+        </p>
+        <p
+          id="infoPesan"
+          class="text-green-700 mt-2 font-medium text-sm sm:text-base"
+        >
+          Link Sertifikat dan Kwitansi akan segera dikirimkan ke WhatsApp Anda.
+        </p>
+        <div
+          id="successInfo"
+          class="mt-3 sm:mt-4 space-y-1 sm:space-y-2 text-sm sm:text-base"
+        >
+          <p class="font-semibold text-green-900">
+            Nomor Sertifikat: <span id="sertifikatNo" class="font-mono"></span>
+          </p>
+          <p class="font-semibold text-green-900">
+            Nomor Kwitansi: <span id="kwitansiNo" class="font-mono"></span>
+          </p>
+        </div>
+        <div
+          class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mt-4"
+        >
+          <button
+            id="donasiLagiBtn"
+            class="px-4 py-2 rounded-xl bg-green-500 text-white font-semibold hover:bg-green-600 w-full sm:w-auto"
+          >
+            Donasi Lagi
+          </button>
+          <button
+            id="backHomeBtn"
+            onclick="window.location.href='index.html'"
+            class="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 w-full sm:w-auto"
+          >
+            <i class="fas fa-arrow-left mr-2"></i>Kembali ke Beranda
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Alert -->
+      <div
+        id="alertModal"
+        class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-2 sm:p-4"
+      >
+        <div class="bg-white rounded-lg p-4 sm:p-6 w-full max-w-sm shadow-xl">
+          <h3 id="alertTitle" class="text-lg font-bold mb-2 text-red-600">
+            Peringatan
+          </h3>
+          <p
+            id="alertMessage"
+            class="text-gray-700 mb-4 text-sm sm:text-base"
+          ></p>
+          <div class="flex justify-end">
+            <button
+              id="closeAlertBtn"
+              type="button"
+              class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 w-full sm:w-auto"
+            >
+              Tutup
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Link ke donasi.js -->
+    <script src="donasi.js"></script>
+  </body>
+</html>
