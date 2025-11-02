@@ -80,7 +80,7 @@ backButton.addEventListener('click', function (e) {
     ) {
       isFormDirty = false;
       isLoading = false;
-      window.location.href = 'index.html';
+      window.location.href = '/';
     }
   }
 });
